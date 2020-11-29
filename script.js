@@ -12,13 +12,15 @@ var confirmNumericCharacter;
 var confirmUpperCase;
 var confirmLowerCase;
 var passwordCharacters = [];
+var confirmLength="";
 
 
 //get password length and paramaters  
 function getoption() {
-    var confirmLength = parseInt(prompt("How many characters would you like your password to contain?"));
-    if (confirmLength <= 2 || confirmLength >= 128 || (isNaN(confirmLength) === true)) {
+   confirmLength = parseInt(prompt("How many characters would you like your password to contain?"));
+    if (confirmLength < 8 || confirmLength > 128 || (isNaN(confirmLength) === true)) {
         alert("Password length must be a NUMBER  between 8-128 characters!!!Try again");
+        confirmLength="";
         return;
     }
     alert(`Your password will have ${confirmLength} characters`);
@@ -28,6 +30,7 @@ function getoption() {
     confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");
     if (confirmUpperCase === false && confirmLowerCase === false && confirmSpecialCharacter === false && confirmNumericCharacter === false) {
         alert("You must choose at least one parameter");
+        confirmLength="";
         return;
     }
 
